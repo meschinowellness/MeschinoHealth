@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 // Component Imports
-import { Menu, MenuItem } from '@menu/vertical-menu'
+import { Menu, SubMenu, MenuItem, MenuSection } from '@menu/vertical-menu'
 
 // Hook Imports
 import useVerticalNav from '@menu/hooks/useVerticalNav'
@@ -60,12 +60,19 @@ const VerticalMenu = ({ scrollMenu }) => {
         renderExpandedMenuItemIcon={{ icon: <i className='ri-circle-line' /> }}
         menuSectionStyles={menuSectionStyles(verticalNavOptions, theme)}
       >
-        <MenuItem href='/home' icon={<i className='ri-home-smile-line' />}>
-          Home
-        </MenuItem>
-        <MenuItem href='/about' icon={<i className='ri-information-line' />}>
-          About
-        </MenuItem>
+        <SubMenu label='Dashboard' icon={<i className='ri-home-smile-line' />}>
+          <MenuItem href='/home' icon={<i className='ri-home-smile-line' />}>
+            Home
+          </MenuItem>
+          <MenuItem href='/about' icon={<i className='ri-information-line' />}>
+            About
+          </MenuItem>
+        </SubMenu>
+
+        <SubMenu label='User' icon={<i className='ri-user-line' />}>
+          <MenuItem href='/apps/user/list'>List</MenuItem>
+          <MenuItem href='/apps/user/view'>View</MenuItem>
+        </SubMenu>
       </Menu>
       {/* <Menu
           popoutMenuOffset={{ mainAxis: 10 }}
