@@ -26,6 +26,7 @@
     "@mui/material": "5.15.4",
     "@mui/material-nextjs": "5.15.3",
     "@tanstack/match-sorter-utils": "^8.11.8",
+    "@tanstack/react-table": "^8.13.2",
     "autoprefixer": "10.4.16",
     "classnames": "2.5.1",
     "eslint": "8.56.0",

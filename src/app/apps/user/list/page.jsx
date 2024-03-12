@@ -1,5 +1,5 @@
 // Component Imports
-import UserList from '@views/user/list'
+import UserList from '@/views/apps/user/list'
 
 const getData = async () => {
   // Vars
