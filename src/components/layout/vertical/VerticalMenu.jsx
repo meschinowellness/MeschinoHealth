@@ -72,6 +72,10 @@ const VerticalMenu = ({ scrollMenu }) => {
         <SubMenu label='User' icon={<i className='ri-user-line' />}>
           <MenuItem href='/apps/user/list'>List</MenuItem>
         </SubMenu>
+
+        <SubMenu label='Articles' icon={<i className='ri-article-line' />}>
+          <MenuItem href='/apps/articles/list'>List</MenuItem>
+        </SubMenu>
       </Menu>
       {/* <Menu
           popoutMenuOffset={{ mainAxis: 10 }}

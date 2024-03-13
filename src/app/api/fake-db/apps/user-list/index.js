@@ -666,5 +666,18 @@ export const db = [
     currentPlan: 'company',
     status: 'active',
     avatar: '/images/avatars/2.png'
+  },
+  {
+    id: 51,
+    fullName: 'Sunil Panchani',
+    company: 'TechForbs Services PVT LTD',
+    role: 'editor',
+    username: 'bkrabbe1d',
+    country: 'China',
+    contact: '(397) 294-5153',
+    email: 'bkrabbe1d@home.pl',
+    currentPlan: 'company',
+    status: 'active',
+    avatar: '/images/avatars/2.png'
   }
 ]
