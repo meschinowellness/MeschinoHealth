@@ -2,8 +2,6 @@
 import { useState } from 'react'
 
 // MUI Imports
-import { redirect } from 'next/navigation'
-
 import Button from '@mui/material/Button'
 import Drawer from '@mui/material/Drawer'
 import FormControl from '@mui/material/FormControl'
@@ -34,6 +32,27 @@ const AddUserDrawer = ({ open, handleClose }) => {
   // States
   const [formData, setFormData] = useState(initialData)
 
+  const handleSubmit = async e => {
+    console.log('[formdata]', formData)
+    e.preventDefault()
+    await saveUserData()
+
+    //handleClose()
+    //setFormData(initialData)
+  }
+
+  async function saveUserData() {
+    const res = await fetch(`http://localhost:3000/api/apps/user-save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fullName: 'TechForbs Services' })
+    })
+
+    const data = await res.json()
+
+    console.log('[Add user client]', res)
+  }
+
   const handleReset = () => {
     handleClose()
     setFormData({
@@ -49,29 +68,9 @@ const AddUserDrawer = ({ open, handleClose }) => {
     })
   }
 
-  async function action() {
-    const prepareData = {
-      fullName: formData.fullName,
-      company: formData.company,
-      username: formData.username,
-      country: formData.country,
-      contact: formData.contact,
-      email: formData.email,
-      status: formData.status
-    }
-
-    console.log('[action call - prepareData]', prepareData)
-
-    const res = await fetch(`http://localhost:3000/api/apps/user-save`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(prepareData)
-    })
-
-    const data = await res.json()
-
-    setFormData(initialData)
-    redirect('/apps/user/list')
+  async function action(fieldData) {
+    // 'use server'
+    console.log('[formdata]', fieldData)
   }
 
   return (
@@ -138,7 +137,41 @@ const AddUserDrawer = ({ open, handleClose }) => {
             value={formData.contact}
             onChange={e => setFormData({ ...formData, contact: e.target.value })}
           />
-
+          <FormControl fullWidth>
+            <InputLabel id='role-select'>Select Role</InputLabel>
+            <Select
+              fullWidth
+              id='select-role'
+              value={formData.role}
+              onChange={e => setFormData({ ...formData, role: e.target.value })}
+              label='Select Role'
+              labelId='role-select'
+              inputProps={{ placeholder: 'Select Role' }}
+            >
+              <MenuItem value='admin'>Admin</MenuItem>
+              <MenuItem value='author'>Author</MenuItem>
+              <MenuItem value='editor'>Editor</MenuItem>
+              <MenuItem value='maintainer'>Maintainer</MenuItem>
+              <MenuItem value='subscriber'>Subscriber</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id='plan-select'>Select Plan</InputLabel>
+            <Select
+              fullWidth
+              id='select-plan'
+              value={formData.plan}
+              onChange={e => setFormData({ ...formData, plan: e.target.value })}
+              label='Select Plan'
+              labelId='plan-select'
+              inputProps={{ placeholder: 'Select Plan' }}
+            >
+              <MenuItem value='basic'>Basic</MenuItem>
+              <MenuItem value='company'>Company</MenuItem>
+              <MenuItem value='enterprise'>Enterprise</MenuItem>
+              <MenuItem value='team'>Team</MenuItem>
+            </Select>
+          </FormControl>
           <FormControl fullWidth>
             <InputLabel id='plan-select'>Select Status</InputLabel>
             <Select

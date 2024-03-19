@@ -1,8 +1,10 @@
-// Component Imports
+import { getUsers } from '@/lib/users'
+
 import UserList from '@/views/apps/user/list'
 
+export const dynamic = 'force-dynamic'
+
 const getData = async () => {
-  // Vars
   const res = await fetch(`${process.env.API_URL}/apps/user-list`)
 
   if (!res.ok) {

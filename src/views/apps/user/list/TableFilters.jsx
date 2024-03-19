@@ -30,7 +30,7 @@ const TableFilters = ({ setData, tableData }) => {
   return (
     <CardContent>
       <Grid container spacing={5}>
-        <Grid item xs={12} sm={4}>
+        {/* <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
             <InputLabel id='role-select'>Select Role</InputLabel>
             <Select
@@ -50,8 +50,8 @@ const TableFilters = ({ setData, tableData }) => {
               <MenuItem value='subscriber'>Subscriber</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={4}>
+        </Grid> */}
+        {/* <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
             <InputLabel id='plan-select'>Select Plan</InputLabel>
             <Select
@@ -70,7 +70,7 @@ const TableFilters = ({ setData, tableData }) => {
               <MenuItem value='team'>Team</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
             <InputLabel id='status-select'>Select Status</InputLabel>

@@ -112,6 +112,27 @@ const UserListTable = ({ tableData }) => {
   // Hooks
   const { lang: locale } = useParams()
 
+  async function handleDelete(userId) {
+    // console.log('[handleDelete]', userId)
+
+    const resp = await fetch('http://localhost:3000/api/apps/users/delete', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ user_id: userId })
+    })
+
+    if (resp.ok) {
+      // Displaying notification when data is deleted successfully
+      // toast.success('Data Deleted Successfully!',{
+      //     position:'top-center',
+      //     duration:1500
+      // })
+      location.reload()
+    }
+  }
+
   const columns = useMemo(
     () => [
       {
@@ -154,28 +175,7 @@ const UserListTable = ({ tableData }) => {
         header: 'Email',
         cell: ({ row }) => <Typography>{row.original.email}</Typography>
       }),
-      columnHelper.accessor('role', {
-        header: 'Role',
-        cell: ({ row }) => (
-          <div className='flex items-center gap-2'>
-            <Icon
-              className={userRoleObj[row.original.role].icon}
-              sx={{ color: `var(--mui-palette-${userRoleObj[row.original.role].color}-main)`, fontSize: '1.375rem' }}
-            />
-            <Typography className='capitalize' color='text.primary'>
-              {row.original.role}
-            </Typography>
-          </div>
-        )
-      }),
-      columnHelper.accessor('currentPlan', {
-        header: 'Plan',
-        cell: ({ row }) => (
-          <Typography className='capitalize' color='text.primary'>
-            {row.original.currentPlan}
-          </Typography>
-        )
-      }),
+
       columnHelper.accessor('status', {
         header: 'Status',
         cell: ({ row }) => (
@@ -192,9 +192,9 @@ const UserListTable = ({ tableData }) => {
       }),
       columnHelper.accessor('action', {
         header: 'Action',
-        cell: () => (
+        cell: ({ row }) => (
           <div className='flex items-center'>
-            <IconButton>
+            <IconButton onClick={() => handleDelete(row.original.id)}>
               <i className='ri-delete-bin-7-line text-[22px] text-textSecondary' />
             </IconButton>
             <IconButton>
@@ -292,9 +292,9 @@ const UserListTable = ({ tableData }) => {
               placeholder='Search User'
               className='is-full sm:is-auto'
             />
-            <Button variant='contained' onClick={() => setAddUserOpen(!addUserOpen)} className='is-full sm:is-auto'>
-              Add New User
-            </Button>
+            <Link href='/apps/user/add' className='flex'>
+              <Button variant='contained'>Add New User</Button>
+            </Link>
           </div>
         </div>
         <div className='overflow-x-auto'>
@@ -368,7 +368,6 @@ const UserListTable = ({ tableData }) => {
           onRowsPerPageChange={e => table.setPageSize(Number(e.target.value))}
         />
       </Card>
-      <AddUserDrawer open={addUserOpen} handleClose={() => setAddUserOpen(!addUserOpen)} />
     </>
   )
 }
