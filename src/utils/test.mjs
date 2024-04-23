@@ -17,5 +17,3 @@ const user = await db.user.create({
 console.log('created', user)
 
 const data = await db.user.findMany()
-
-console.log(data)
