@@ -1,7 +1,8 @@
-'use client'
+import React from 'react';
+import AddUserDrawer from '@/views/apps/user/add/AddUserDrawer';
 
-import AddUserDrawer from '@/views/apps/user/list/AddUserDrawer'
-
-export default function AddUserPage() {
+const page = () => {
   return <AddUserDrawer />
 }
+
+export default page;

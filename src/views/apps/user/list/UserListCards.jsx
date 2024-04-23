@@ -56,4 +56,4 @@ const UserListCards = () => {
   )
 }
 
-export default UserListCards
+export default UserListCards;

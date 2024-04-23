@@ -56,4 +56,4 @@ const ArticleListCards = () => {
   )
 }
 
-export default ArticleListCards
+export default ArticleListCards;
